@@ -12,7 +12,7 @@ def load_partial(request, page):
      """
      try:
           # Render the specified partial template
-          html = render_to_string(f'website/{page}.html')
+          html = render_to_string(f'core/{page}.html')
           return HttpResponse(html)
      except:
           # If the template does not exist
