@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AgriNova</title>
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+<body>
+    <header>
+     <h1>AgriNova</h1>
+     <button id="menu-toggle">☰</button>
+     <nav id="nav-links">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#features" class="nav-link">features</a>
+          <a href="#how_it_works" class="nav-link">how it works</a>
+          <a href="#contact" class="nav-link">Contact</a>
+     </nav>
+    </header>
+
+    <main id="spa-content">
+        {% include 'core/home.html' %}
+        {% include 'core/features.html' %}
+        {% include 'core/how_it_works.html' %}
+        {% include 'core/ai_powered.html' %}
+        {% include 'core/dashboardPreview.html' %}
+        {% include 'core/testimonials.html' %}
+        {% include 'core/contact.html' %}
+        
+    </main>
+
+    <button id="back-to-top" title="Back to top">↑</button>
+
+    <footer>
+        <p>&copy; 2025 AGRINOVA. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'core/js/spa.js' %}"></script>
+
+</body>
+</html>
