@@ -5,9 +5,20 @@
   justify-content: center;
   align-items: stretch;
   min-height: 60vh;
-  background: #f5f8f2;
+  background: url("../images/1.jpg") no-repeat center center;
+  background-size: cover;
+  position: relative;
   padding: 40px 0;
   gap: 48px;
+}
+
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(34, 49, 63, 0.35); /* semi-transparent overlay */
+  z-index: 0;
+  border-radius: 18px;
 }
 
 .hero-content {
