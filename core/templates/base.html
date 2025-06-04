@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{% static 'core/css/base.css' %}" />
     <link rel="stylesheet" href="{% static 'core/css/home.css' %}" />
     <link rel="stylesheet" href="{% static 'core/css/features.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/how_it_works.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/testimonials.css' %}" />
   </head>
   <body>
     <header>
@@ -22,7 +24,8 @@
           <nav id="nav-links">
             <a href="#home" class="nav-link">Home</a>
             <a href="#features" class="nav-link">Features</a>
-            <a href="#how_it_works" class="nav-link">How it works</a>
+            <a href="#how-it-works" class="nav-link">How it works</a>
+            <a href="#testimonials" class="nav-link">Testimonies</a>
             <a href="#contact" class="nav-link">Contact</a>
             <span class="auth-links">
               <a href="#" class="signup-link">Register</a>
@@ -40,10 +43,6 @@
 
       {% include 'core/how_it_works.html' %} 
 
-      {% include 'core/ai_powered.html' %}
-
-      {% include 'core/dashboardPreview.html' %} 
-
       {% include 'core/testimonials.html' %} 
 
       {% include 'core/contact.html' %}
@@ -58,5 +57,6 @@
     <script src="{% static 'core/js/spa.js' %}"></script>
     <script src="{% static 'core/js/hero-slideshow.js' %}"></script>
     <script src="{% static 'core/js/header-scroll.js' %}"></script>
+    <script src="{% static 'core/js/testimonials.js' %}"></script>
   </body>
 </html>
