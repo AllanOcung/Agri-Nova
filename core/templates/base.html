@@ -10,22 +10,25 @@
   <body>
     <header>
       <div class="header-container">
-        <h1 class="logo">
-          <span style="color: #fff">Agri</span
-          ><span style="color: #ffc107">Nova</span>
-        </h1>
+        <div class="header-inner">
+          <h1 class="logo">Agri<span>Nova</span></h1>
+          <button id="menu-toggle" aria-label="Open navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
 
-        <button id="menu-toggle">☰</button>
-        <nav id="nav-links">
-          <a href="#home" class="nav-link">Home</a>
-          <a href="#features" class="nav-link">Features</a>
-          <a href="#how_it_works" class="nav-link">How it works</a>
-          <a href="#contact" class="nav-link">Contact</a>
-          <span class="auth-links">
-            <a href="#">Sign up</a>
-            <a href="#">Login</a>
-          </span>
-        </nav>
+          <nav id="nav-links">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#how_it_works" class="nav-link">How it works</a>
+            <a href="#contact" class="nav-link">Contact</a>
+            <span class="auth-links">
+              <a href="#" class="signup-link">Register</a>
+              <a href="#" class="login-link">Login</a>
+            </span>
+          </nav>
+        </div>
       </div>
     </header>
 
@@ -43,5 +46,7 @@
     </footer>
 
     <script src="{% static 'core/js/spa.js' %}"></script>
+    <script src="{% static 'core/js/hero-slideshow.js' %}"></script>
+    <script src="{% static 'core/js/header-scroll.js' %}"></script>
   </body>
 </html>

@@ -1,6 +1,6 @@
 document.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section');
-    const navLinks = document.getElementById('.nav-link').children;
+    const navLinks = document.querySelectorAll('.nav-link');
 
     let current = '';
     sections.forEach(section => {
@@ -20,10 +20,27 @@ document.addEventListener('scroll', () => {
 });
 
 // Mobile Responsive Nav (Hamburger Menu)
-document.getElementById('menu-toggle').addEventListener('click', () => {
-  document.getElementById('nav-links').classList.toggle('show');
-});
+// document.getElementById('menu-toggle').addEventListener('click', () => {
+//   document.getElementById('nav-links').classList.toggle('show');
+// });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  menuToggle.addEventListener('click', function () {
+    menuToggle.classList.toggle('open');
+    navLinks.classList.toggle('show');
+  });
+
+  // Optional: Close menu when a link is clicked (mobile UX)
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('open');
+      navLinks.classList.remove('show');
+    });
+  });
+});
 
 // Back to Top Button Functionality
 const backToTopBtn = document.getElementById("back-to-top");
