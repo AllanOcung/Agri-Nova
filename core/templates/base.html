@@ -6,6 +6,7 @@
     <title>AgriNova</title>
     <link rel="stylesheet" href="{% static 'core/css/base.css' %}" />
     <link rel="stylesheet" href="{% static 'core/css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/features.css' %}" />
   </head>
   <body>
     <header>
@@ -33,10 +34,19 @@
     </header>
 
     <main id="spa-content">
-      {% include 'core/home.html' %} {% include 'core/features.html' %} {%
-      include 'core/how_it_works.html' %} {% include 'core/ai_powered.html' %}
-      {% include 'core/dashboardPreview.html' %} {% include
-      'core/testimonials.html' %} {% include 'core/contact.html' %}
+      {% include 'core/home.html' %} 
+
+      {% include 'core/features.html' %} 
+
+      {% include 'core/how_it_works.html' %} 
+
+      {% include 'core/ai_powered.html' %}
+
+      {% include 'core/dashboardPreview.html' %} 
+
+      {% include 'core/testimonials.html' %} 
+
+      {% include 'core/contact.html' %}
     </main>
 
     <button id="back-to-top" title="Back to top">↑</button>

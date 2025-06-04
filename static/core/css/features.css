@@ -1,0 +1,154 @@
+#features {
+  background: #f9f7f3;
+  padding: 25px 0 48px 0;
+}
+
+.features-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.features-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #7a4c1e;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+
+.features-divider {
+  width: 48px;
+  height: 4px;
+  background: #c4830c;
+  border-radius: 2px;
+  margin: 0 auto 32px auto;
+  opacity: 0.85;
+}
+
+.features-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+
+.feature-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(196, 131, 12, 0.07);
+  padding: 32px 28px 28px 28px;
+  max-width: 340px;
+  min-width: 260px;
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: box-shadow 0.3s, transform 0.3s;
+  position: relative;
+}
+
+.feature-card:hover {
+  box-shadow: 0 8px 40px rgba(196, 131, 12, 0.14);
+  transform: translateY(-6px) scale(1.025);
+}
+
+.feature-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.feature-icon {
+  font-size: 2.2rem;
+  background: #fff7e6;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(196, 131, 12, 0.08);
+  color: #c4830c;
+}
+
+.feature-card h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #c4830c;
+  margin: 0;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.feature-list li {
+  margin-bottom: 18px;
+  font-size: 1rem;
+  color: #4d3a1a;
+  font-weight: 500;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.feature-list-icon {
+  font-size: 1.3em;
+  margin-right: 6px;
+  margin-top: 2px;
+}
+
+/* Responsive styles */
+@media (max-width: 1100px) {
+  .features-cards {
+    gap: 20px;
+  }
+  .feature-card {
+    max-width: 320px;
+    padding: 28px 16px 24px 16px;
+  }
+}
+
+@media (max-width: 900px) {
+  .features-cards {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+  .feature-card {
+    max-width: 95vw;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  #features {
+    padding: 36px 0 24px 0;
+  }
+  .features-title {
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+  }
+  .feature-card {
+    padding: 18px 6vw 16px 6vw;
+    border-radius: 12px;
+  }
+  .feature-header {
+    gap: 8px;
+  }
+  .feature-icon {
+    font-size: 1.5rem;
+    padding: 6px;
+  }
+  .feature-card h2 {
+    font-size: 1.05rem;
+  }
+  .feature-list li {
+    font-size: 0.97rem;
+    margin-bottom: 12px;
+  }
+}
