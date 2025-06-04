@@ -1,0 +1,235 @@
+/* Subscription Banner */
+.subscribe-section {
+  font-family: "Open Sans", "Roboto", Arial, sans-serif;
+  position: relative;
+  min-height: 300px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.subscribe-bg {
+  background: url("/static/core/images/3.jpg") center center/cover no-repeat;
+  width: 100%;
+  min-height: 300px;
+  position: relative;
+  filter: none;
+}
+
+.subscribe-overlay {
+  background: rgba(34, 34, 34, 0.6);
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.subscribe-content {
+  text-align: center;
+  color: #fff;
+  max-width: 540px;
+  margin: 0 auto;
+  z-index: 2;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center all child elements horizontally */
+  justify-content: center;
+}
+
+.subscribe-headline {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #fff;
+  letter-spacing: 0.01em;
+  white-space: nowrap; /* Prevents line break */
+}
+
+.subscribe-subheading {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #e0e0e0;
+  margin-bottom: 28px;
+  font-weight: 400;
+}
+
+.subscribe-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  /* flex-wrap: wrap; */
+}
+
+.subscribe-input {
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  width: 240px;
+  max-width: 70vw;
+  background: #fff;
+  color: #222;
+  font-family: inherit;
+  margin-right: 0;
+}
+
+.subscribe-btn {
+  padding: 12px 28px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(90deg, #ffc04d 60%, #c4830c 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-family: inherit;
+  box-shadow: 0 2px 8px rgba(196, 131, 12, 0.08);
+}
+.subscribe-btn:hover {
+  background: linear-gradient(90deg, #c4830c 60%, #ffc04d 100%);
+  color: #222;
+}
+
+.subscribe-policy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.98rem;
+  color: #fff;
+  gap: 8px;
+  margin-top: 4px;
+  font-weight: 400;
+  cursor: pointer;
+  user-select: none;
+}
+.subscribe-policy input[type="checkbox"] {
+  accent-color: #ffc04d;
+  margin-right: 6px;
+}
+
+/* Footer */
+.footer-section {
+  background: linear-gradient(90deg, #ffc04d 5%, #c4830c 100%);
+  padding: 0;
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 24px;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #222;
+  letter-spacing: 0.04em;
+}
+
+.footer-mission {
+  font-size: 1.05rem;
+  color: #222;
+  font-weight: 500;
+  max-width: 700px;
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    text-align: left;
+    padding: 24px 8vw;
+  }
+  .footer-mission {
+    text-align: left;
+    max-width: 100%;
+  }
+  .subscribe-content {
+    padding: 24px 4vw;
+    max-width: 90vw;
+  }
+  .subscribe-headline {
+    font-size: 1.5rem;
+    white-space: normal;
+    text-overflow: unset;
+  }
+  .subscribe-form {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .subscribe-input,
+  .subscribe-btn {
+    border-radius: 24px;
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .subscribe-section,
+  .subscribe-bg,
+  .subscribe-overlay {
+    min-height: 220px;
+  }
+  .subscribe-content {
+    padding: 12px 2vw;
+    max-width: 98vw;
+  }
+  .subscribe-headline {
+    font-size: 1.1rem;
+    padding: 0 2vw;
+  }
+  .subscribe-subheading {
+    font-size: 0.98rem;
+    margin-bottom: 18px;
+  }
+  .subscribe-form {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .subscribe-input,
+  .subscribe-btn {
+    border-radius: 24px;
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+    font-size: 0.97rem;
+    padding: 10px 12px;
+  }
+  .subscribe-policy {
+    font-size: 0.92rem;
+    margin-top: 2px;
+  }
+
+  .footer-brand {
+    font-size: 1.1rem;
+  }
+  .footer-mission {
+    font-size: 0.97rem;
+  }
+}
