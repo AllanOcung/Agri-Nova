@@ -27,23 +27,4 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 });
 
-// document.getElementById('openFarmModal').onclick = function() {
-//   document.getElementById('farmModal').classList.add('show');
-// };
-// document.getElementById('closeFarmModal').onclick = function() {
-//   document.getElementById('farmModal').classList.remove('show');
-// };
-// // Optional: Close modal when clicking outside content
-// window.onclick = function(event) {
-//   const modal = document.getElementById('farmModal');
-//   if (event.target === modal) {
-//     modal.classList.remove('show');
-//   }
-// };
-// // Optional: Set selected farm text on button
-// document.querySelectorAll('.farm-option').forEach(function(btn) {
-//   btn.onclick = function() {
-//     document.getElementById('openFarmModal').innerHTML = this.textContent + ' <i class="fas fa-chevron-down"></i>';
-//     document.getElementById('farmModal').classList.remove('show');
-//   };
-// });
+
