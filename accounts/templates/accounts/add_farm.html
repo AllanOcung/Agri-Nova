@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Farm | AgriNova</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'accounts/css/register.css' %}">
+  <style>
+    .add-farm-container {
+      max-width: 420px;
+      margin: 48px auto;
+      background: #23272f;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      padding: 36px 28px 28px 28px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .add-farm-container h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      color: #fff;
+      text-align: center;
+    }
+    .add-farm-container form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .add-farm-container input[type="text"],
+    .add-farm-container select,
+    .add-farm-container textarea {
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+      background: #2e323a;
+      color: #fff;
+      outline: none;
+      margin-bottom: 0;
+      transition: background 0.2s, box-shadow 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .add-farm-container input[type="text"]:focus,
+    .add-farm-container select:focus,
+    .add-farm-container textarea:focus {
+      background: #353942;
+      box-shadow: 0 2px 8px rgba(196,131,12,0.08);
+    }
+    .add-farm-btn-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .add-farm-btn-row button {
+      flex: 1;
+      background: linear-gradient(90deg, #ffc04d 60%, #c4830c 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(196,131,12,0.08);
+      transition: background 0.2s, color 0.2s;
+    }
+    .add-farm-btn-row button:hover {
+      background: linear-gradient(90deg, #c4830c 60%, #ffc04d 100%);
+      color: #23272f;
+    }
+    @media (max-width: 600px) {
+      .add-farm-container {
+        padding: 18px 2vw;
+        max-width: 98vw;
+      }
+      .add-farm-container h2 {
+        font-size: 1.3rem;
+      }
+      .add-farm-btn-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="add-farm-container">
+    <h2>Add Farm</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="add-farm-btn-row">
+        <button type="submit" name="add_another">Add Another Farm</button>
+        <button type="submit">Finish</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

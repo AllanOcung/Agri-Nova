@@ -36,8 +36,8 @@
             <a href="#testimonials" class="nav-link">Testimonies</a>
             <a href="#main-footer" class="nav-link">Contact</a>
             <span class="auth-links">
-              <a href="#" class="signup-link">Register</a>
-              <a href="#" class="login-link">Login</a>
+              <a href="{% url 'user_register' %}" class="signup-link">Register</a>
+              <a href="{% url 'farmer_login' %}" class="login-link">Login</a>
             </span>
           </nav>
         </div>
@@ -52,6 +52,7 @@
       {% include 'core/subscribe.html' %} 
       {% include 'core/contact.html' %}
     </main>
+
 
     <button id="back-to-top" title="Back to top">↑</button>
 

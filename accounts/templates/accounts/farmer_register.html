@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AgriNovaa Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- FontAwesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'accounts/css/register.css' %}" />
+  </head>
+  <body>
+    <div class="register-split-container">
+      <!-- Left Visual Panel -->
+      <div class="register-visual-panel">
+        <a href="{% url 'index' %}" class="back-btn">Back to website &rarr;</a>
+        <div class="slideshow-container">
+          <img
+            src="{% static 'core/images/1.jpg' %}"
+            class="slide-img active"
+            alt="Slide 1"
+          />
+          <img
+            src="{% static 'core/images/2.jpg' %}"
+            class="slide-img"
+            alt="Slide 2"
+          />
+          <img
+            src="{% static 'core/images/3.jpg' %}"
+            class="slide-img"
+            alt="Slide 3"
+          />
+        </div>
+        <div class="logo-row">
+          <i class="fas fa-seedling logo-icon"></i>
+          <span class="logo-text">Agri<span class="logo-link">Nova</span></span>
+        </div>
+        <div class="slogan">Empowering Smart Farming</div>
+        <div class="indicator-dots" id="slide-dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <!-- Right Form Panel -->
+      <div class="register-form-panel">
+        <div class="form-content">
+          <h2>Create an account</h2>
+          <div class="subtext">
+            Already have an account?
+            <a href="{% url 'farmer_login' %}" class="signin-link">Sign in</a>
+          </div>
+          <form id="registration-form" method="post" autocomplete="off">
+            {% csrf_token %}
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              required
+            />
+            <div class="name-row">
+              <input
+                type="text"
+                name="first_name"
+                placeholder="First name"
+                required
+              />
+              <input
+                type="text"
+                name="last_name"
+                placeholder="Last name"
+                required
+              />
+            </div>
+            <input type="email" name="email" placeholder="Email" required />
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone number"
+              required
+            />
+
+            <select name="role" required>
+              <option value="" disabled selected>Select role</option>
+              <option value="farmer">Farmer</option>
+              <option value="agronomist">Agronomist</option>
+              <option value="extension officer">Extension Officer</option>
+            </select>
+
+            <div class="password-row">
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                id="password-input"
+                required
+              />
+              <span class="toggle-password" onclick="togglePassword()">
+                <i class="fa fa-eye" id="eye-icon"></i>
+              </span>
+            </div>
+            <div class="checkbox-row">
+              <input type="checkbox" id="terms" required />
+              <label for="terms">
+                I agree to the
+                <a href="#" class="terms-link">Terms &amp; Conditions</a>
+              </label>
+            </div>
+            <button type="submit" class="create-account-btn">
+              Create account
+            </button>
+          </form>
+          <div class="separator">
+            <span>or register with</span>
+          </div>
+          <div class="alt-signup-row">
+            <button class="alt-btn google-btn">
+              <i class="fab fa-google"></i> Google
+            </button>
+            <button class="alt-btn apple-btn">
+              <i class="fab fa-apple"></i> Apple
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function togglePassword() {
+        const pwd = document.getElementById("password-input");
+        const icon = document.getElementById("eye-icon");
+        if (pwd.type === "password") {
+          pwd.type = "text";
+          icon.classList.remove("fa-eye");
+          icon.classList.add("fa-eye-slash");
+        } else {
+          pwd.type = "password";
+          icon.classList.remove("fa-eye-slash");
+          icon.classList.add("fa-eye");
+        }
+      }
+    </script>
+        <script src="{% static 'accounts/js/register-slideshow.js' %}"></script>
+  </body>
+</html>

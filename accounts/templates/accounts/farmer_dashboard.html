@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AgriNova Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- FontAwesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'accounts/css/dashboard.css' %}" />
+  </head>
+  <body>
+    <!-- Fixed Header -->
+    <header class="dashboard-header">
+      <div class="dashboard-logo">
+        <i class="fas fa-seedling logo-icon"></i>
+        <span class="logo-text">Agri<span class="logo-link">Nova</span></span>
+      </div>
+      <div class="header-divider"></div>
+      <div class="farm-selector">
+        <button id="openFarmModal" class="farm-selector-btn">
+          <span id="selectedFarm">
+            <!-- This will be set by JS to the first farm in the list -->
+          </span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Modal for farm selection -->
+    <div id="farmModal" class="farm-modal">
+      <div class="farm-modal-content">
+        <span class="farm-modal-close" id="closeFarmModal">&times;</span>
+        <!-- Top Section -->
+        <div class="farm-modal-top">
+          <button class="farm-modal-link" id="seeAllFarmsBtn">
+            <i class="fas fa-list"></i> See all farms
+          </button>
+          <button class="farm-modal-link" id="addFarmBtn">
+            <i class="fas fa-plus"></i> Add a farm
+          </button>
+        </div>
+        <div class="farm-modal-divider"></div>
+        <!-- Bottom Section -->
+        <div class="farm-modal-bottom">
+          <div class="farm-modal-title">Your farms</div>
+          <ul class="farm-list" id="farmList">
+            <li><button class="farm-option">Farm A</button></li>
+            <li><button class="farm-option">Farm B</button></li>
+            <li><button class="farm-option">Farm C</button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <button class="sidebar-dashboard-btn">
+          <i class="fas fa-chart-line"></i> Dashboard
+        </button>
+        <nav class="sidebar-menu">
+          <a href="#"><i class="fas fa-tint"></i> Soil Moisture </a>
+          <a href="#"><i class="fas fa-upload"></i> Crop Image Upload</a>
+          <a href="#"
+            ><i class="fas fa-map-marker-alt"></i> Farm Profile/Edit</a
+          >
+          <a href="#"
+            ><i class="fas fa-database"></i> Environmental Data Input</a
+          >
+          <a href="#"><i class="fas fa-bell"></i> Notifications</a>
+          <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+          <a href="{% url 'user_logout' %}" class="sidebar-menu-link">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </nav>
+        <div class="sidebar-pro-card">
+          <div class="pro-title"><i class="fas fa-crown"></i> Become Pro</div>
+          <button class="pro-btn">Upgrade to Pro</button>
+        </div>
+        <button class="sidebar-collapse">
+          <i class="fas fa-angle-left"></i>
+        </button>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="field-selector">
+          <select>
+            <option>Field A ▼</option>
+            <option>Field B</option>
+          </select>
+        </div>
+        <div class="dashboard-top-card">
+          <div class="card-header">
+            <h3>Humidity vs Rainfall</h3>
+            <div class="weather-today">
+              <div class="weather-title">Weather Today</div>
+              <div class="weather-info">
+                <i class="fas fa-sun"></i> Sunny<br />
+                <span>Pressure: 40%</span>
+              </div>
+            </div>
+          </div>
+          <div class="chart-area">
+            <!-- Placeholder for line chart -->
+            <img
+              src="https://placehold.co/400x120/EEE/AAA?text=Line+Chart"
+              alt="Line Chart"
+              class="chart-img"
+            />
+          </div>
+          <div class="soil-moisture-bar">
+            <span>Current Soil Moisture Levels</span>
+            <div class="moisture-bar-bg">
+              <div class="moisture-bar-fill" style="width: 65%"></div>
+            </div>
+            <span class="moisture-value">65%</span>
+          </div>
+        </div>
+        <div class="dashboard-bottom-card">
+          <div class="bottom-left">
+            <h3>Soil Moisture Over Time</h3>
+            <div class="bar-chart">
+              <!-- Static bar chart -->
+              <div class="bar" style="height: 60%"></div>
+              <div class="bar" style="height: 80%"></div>
+              <div class="bar" style="height: 40%"></div>
+              <div class="bar" style="height: 70%"></div>
+              <div class="bar" style="height: 50%"></div>
+            </div>
+            <button class="view-report-btn">View Report</button>
+          </div>
+          <div class="bottom-right">
+            <div class="more-analysis-title">More Analysis</div>
+            <a href="#" class="analysis-link">Soil</a>
+            <a href="#" class="analysis-link">Crop Health</a>
+            <a href="#" class="see-all-link"
+              >See all AgriNova features &rarr;</a
+            >
+          </div>
+        </div>
+        <!-- New Section: Crop Image Upload & Environmental Data -->
+        <div class="dashboard-card">
+          <h3>Crop Image Upload</h3>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="crop_image" accept="image/*" required />
+            <button type="submit" class="upload-btn">Upload</button>
+          </form>
+        </div>
+        <div class="dashboard-card">
+          <h3>Environmental Data Input</h3>
+          <form method="post">
+            {% csrf_token %}
+            <input
+              type="text"
+              name="soil_moisture"
+              placeholder="Soil Moisture (%)"
+              required
+            />
+            <input
+              type="text"
+              name="temperature"
+              placeholder="Temperature (°C)"
+              required
+            />
+            <input
+              type="text"
+              name="rainfall"
+              placeholder="Rainfall (mm)"
+              required
+            />
+            <button type="submit" class="upload-btn">Submit Data</button>
+          </form>
+        </div>
+        <!-- Notifications/Alerts -->
+        <div class="dashboard-card">
+          <h3>Notifications & Alerts</h3>
+          <ul class="notifications-list">
+            <li><i class="fas fa-exclamation-triangle"></i> No new alerts.</li>
+            <!-- Future: dynamically list alerts here -->
+          </ul>
+        </div>
+        <!-- Farm Profile Edit -->
+        <div class="dashboard-card">
+          <h3>Farm Profile</h3>
+          <a href="#" class="edit-profile-btn">
+            <i class="fas fa-edit"></i> Edit Farm Details
+          </a>
+        </div>
+      </main>
+
+      <!-- Floating Right Toolbar -->
+      <div class="right-toolbar">
+        <div class="profile-avatar">
+          <img src="https://placehold.co/40x40" alt="User" />
+        </div>
+        <button class="toolbar-icon"><i class="fas fa-bell"></i></button>
+        <button class="toolbar-icon"><i class="fas fa-cog"></i></button>
+        <button class="toolbar-icon"><i class="fas fa-palette"></i></button>
+        <div class="toolbar-spacer"></div>
+        <button class="toolbar-icon theme-toggle">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+    <script src="{% static 'accounts/js/farm_select_modal.js' %}"></script>
+  </body>
+</html>
