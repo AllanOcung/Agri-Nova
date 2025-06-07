@@ -216,7 +216,7 @@
         <button class="profile-avatar" id="openProfileModal">
           <img src="{% static 'core/images/doctor2.jpg' %}" alt="User" />
         </button>
-        <button class="toolbar-icon"><i class="fas fa-bell"></i></button>
+        <button class="toolbar-icon" id="openAlertsModal"><i class="fas fa-bell"></i></button>
         <button class="toolbar-icon"><i class="fas fa-cog"></i></button>
         <button class="toolbar-icon"><i class="fas fa-palette"></i></button>
         <div class="toolbar-spacer"></div>
@@ -254,6 +254,31 @@
         </div>
       </div>
 
+            <!-- Alerts Modal -->
+      <div id="alertsModal" class="alerts-modal">
+        <div class="alerts-modal-content">
+          <!-- Top Row: Avatar, Title, and Close/Settings Icons -->
+          <div class="alerts-modal-header">
+            <img src="{% static 'core/images/doctor2.jpg' %}" alt="User" class="alerts-modal-avatar" />
+            <button class="alerts-modal-settings" title="Alert Preferences">
+              <i class="fas fa-cog"></i>
+            </button>
+            <div class="alerts-modal-title">Notifications</div>
+            <span class="alerts-modal-close" id="closeAlertsModal">&times;</span>
+          </div>
+          
+          <!-- Illustration -->
+          <div class="alerts-modal-illustration">
+            <img src="{% static 'core/images/alerts.png' %}" alt="No Alerts" class="alerts-modal-illustration-img" />
+            <div class="alerts-modal-no-alerts">You don't have any notifications</div>
+          <div class="alerts-modal-desc">
+            You will see notifications from your farm(s) appear here.<br>
+            You can always review your past notifications in
+            <a href="#" class="alerts-modal-history-inline">See History</a>
+          </div>
+          </div>
+        </div>
+      </div>
 
     <script src="{% static 'accounts/js/farm_select_modal.js' %}"></script>
     <script>
@@ -268,6 +293,29 @@
         const modal = document.getElementById("profileModal");
         if (event.target === modal) {
           modal.style.display = "none";
+        }
+      });
+      // Close modal when clicking outside the modal content
+      document.getElementById("profileModal").addEventListener("click", function (event) {
+        if (event.target === this) {
+          this.style.display = "none";
+        }
+      });
+    </script>
+
+        <script>
+      // Show the alerts modal
+      document.getElementById("openAlertsModal").onclick = function () {
+        document.getElementById("alertsModal").classList.add("show");
+      };
+      // Hide the alerts modal when clicking the close icon
+      document.getElementById("closeAlertsModal").onclick = function () {
+        document.getElementById("alertsModal").classList.remove("show");
+      };
+      // Hide the alerts modal when clicking outside the content
+      document.getElementById("alertsModal").addEventListener("click", function (event) {
+        if (event.target === this) {
+          this.classList.remove("show");
         }
       });
     </script>
