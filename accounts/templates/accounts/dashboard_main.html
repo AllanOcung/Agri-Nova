@@ -1,0 +1,254 @@
+<div class="dashboard-top-card">
+  <div class="card-header-weather-today">
+    <div class="card-header">
+      <h3>Humidity vs Rainfall</h3>
+      <div class="chart-area">
+        <canvas id="dummyLineChart" width="400" height="120"></canvas>
+      </div>
+    </div>
+    <div class="weather-today">
+      <div class="weather-title">
+        <i class="fas fa-cloud-sun"></i> Weather Today
+      </div>
+      <div class="weather-temp-condition">
+        <span class="weather-temp">28°C</span>
+        <span class="weather-condition">Sunny</span>
+      </div>
+      <div class="weather-details">
+        <span class="weather-humidity">Humidity: 65%</span>
+        <span class="weather-divider"></span>
+        <span class="weather-pressure">Pressure: 40%</span>
+      </div>
+    </div>
+  </div>
+  <span class="dashboard-top-divider"></span>
+  <div class="soil-moisture-bar">
+    <span>Current Soil Moisture Levels</span>
+    <div class="moisture-bar-bg">
+      <div class="moisture-bar-fill" style="width: 65%"></div>
+    </div>
+    <span class="moisture-value">65%</span>
+  </div>
+</div>
+
+<div class="crop-health-card">
+  <div class="key-insights-section">
+    <h2 class="key-insights-title">Key Insights</h2>
+    <h2 class="key-insights-title">Farm Profile</h2>
+  </div>
+  <div class="crop-health-content">
+    <div class="crop-health-col">
+      <div class="crop-health-details">
+        <div class="crop-health-row">
+          <span class="crop-health-label"
+            ><i class="fas fa-robot"></i> Health Status:</span
+          >
+          <span class="crop-health-value healthy">Healthy</span>
+        </div>
+        <div class="crop-health-row">
+          <span class="crop-health-label"
+            ><i class="fas fa-bug"></i> Pest Risk:</span
+          >
+          <span class="crop-health-value medium">Medium</span>
+        </div>
+        <div class="crop-health-row">
+          <span class="crop-health-label"
+            ><i class="fas fa-cloud-showers-heavy"></i> Rainfall Highest
+            Recorded:</span
+          >
+          <span class="crop-health-value rainfall">80mm</span>
+        </div>
+        <div class="crop-health-row">
+          <span class="crop-health-label"
+            ><i class="fas fa-tint"></i> Soil Moisture Avg (This Month):</span
+          >
+          <span class="crop-health-value moisture">72%</span>
+        </div>
+      </div>
+    </div>
+    <div class="crop-health-content-divider"></div>
+    <div class="crop-health-col">
+      <div class="farm-profile-details">
+        <div class="farm-profile-row">
+          <span class="farm-profile-label"
+            ><i class="fas fa-map-marker-alt"></i> District:</span
+          >
+          <span class="farm-profile-value">Soroti</span>
+        </div>
+        <div class="farm-profile-row">
+          <span class="farm-profile-label"
+            ><i class="fas fa-location-arrow"></i> Sub County:</span
+          >
+          <span class="farm-profile-value">Amen B</span>
+        </div>
+        <div class="farm-profile-row">
+          <span class="farm-profile-label"
+            ><i class="fas fa-tractor"></i> Farm Name:</span
+          >
+          <span class="farm-profile-value">Farm A</span>
+        </div>
+        <div class="farm-profile-row">
+          <span class="farm-profile-label"
+            ><i class="fas fa-globe-africa"></i> Latitude:</span
+          >
+          <span class="farm-profile-value">1.7156</span>
+        </div>
+        <div class="farm-profile-row">
+          <span class="farm-profile-label"
+            ><i class="fas fa-globe-africa"></i> Longitude:</span
+          >
+          <span class="farm-profile-value">33.6119</span>
+        </div>
+        <div class="farm-profile-row">
+          <span class="farm-profile-label"
+            ><i class="fas fa-ruler-combined"></i> Size:</span
+          >
+          <span class="farm-profile-value">5 acres</span>
+        </div>
+      </div>
+      <div class="edit">
+        <a href="#" class="edit-farm"
+          ><i class="fas fa-edit"></i> Edit farm profile</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Farm Modal -->
+<div id="editFarmModal" class="modal">
+  <div class="modal-div">
+    <div class="modal-content">
+      <span class="close-modal" id="closeEditFarmModal">&times;</span>
+      <h2>Edit Farm Profile</h2>
+      <form id="editFarmForm">
+        <div class="modal-field">
+          <label for="district">District/Region:</label>
+          <input type="text" id="district" name="district" required />
+        </div>
+        <div class="modal-field">
+          <label for="subcounty">Sub County/Parish:</label>
+          <input type="text" id="subcounty" name="subcounty" required />
+        </div>
+        <div class="modal-field">
+          <label for="farmName">Farm Name:</label>
+          <input type="text" id="farmName" name="farmName" required />
+        </div>
+        <div class="modal-field">
+          <label for="size">Size (acres):</label>
+          <input type="number" id="size" name="size" required />
+        </div>
+        <div class="modal-field">
+          <label>Location:</label>
+          <div class="location-methods">
+            <div class="manual-location">
+              <span class="location-method-title">Manual Entry</span>
+              <input
+                type="number"
+                id="latitude"
+                name="latitude"
+                placeholder="Latitude"
+              />
+              <input
+                type="number"
+                id="longitude"
+                name="longitude"
+                placeholder="Longitude"
+              />
+            </div>
+            <div class="location-divider">or</div>
+            <button type="button" class="gps-btn" id="useGpsBtn">
+              <i class="fas fa-location-arrow"></i> Use GPS
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="modal-save-btn">Save Changes</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Dashboard Bottom Card -->
+<div class="dashboard-bottom-card">
+  <div class="environmental-section">Environmental Trends</div>
+  <div class="dashboard-bottom-card-content">
+    <div class="bottom-left">
+      <div class="bottom-left-header">
+        <h3>Soil Moisture Over Time</h3>
+        <button class="view-report-btn">View Report</button>
+      </div>
+      <div class="bar-chart">
+        <canvas id="soilMoistureBarChart"></canvas>
+      </div>
+    </div>
+    <div class="bottom-right">
+      <div class="bottom-right-content">
+        <div class="more-analysis">
+          <div class="more-analysis-title">More Analysis</div>
+          <div class="more-analysis-description">There is more to view</div>
+        </div>
+        <a href="#" class="analysis-link">
+          <i class="fas fa-cloud-showers-heavy"></i> Rainfall Trend
+          <i class="fas fa-angle-right"></i>
+        </a>
+        <a href="#" class="analysis-link">
+          <i class="fas fa-tint"></i> Humidity Gauge
+          <i class="fas fa-angle-right"></i>
+        </a>
+        <a href="#" class="analysis-link">
+          <i class="fas fa-thermometer-half"></i> Temperature Trend
+          <i class="fas fa-angle-right"></i>
+        </a>
+      </div>
+      <div class="bottom-right-button">
+        <button class="download-button">Download Farm Report</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- New Section: Crop Image Upload & Environmental Data -->
+<div class="dashboard-card">
+  <div class="crop-image-upload">
+    <h3 class="dashboard-card-title">Crop Image Upload</h3>
+    <form method="post" enctype="multipart/form-data" class="dashboard-form">
+      {% csrf_token %}
+      <input
+        type="file"
+        name="crop_image"
+        accept="image/*"
+        required
+        class="dashboard-input-file"
+      />
+      <button type="submit" class="upload-btn">Upload</button>
+    </form>
+  </div>
+
+  <div class="environmental-data">
+    <h3 class="dashboard-card-title">Input Farm Data</h3>
+    <form method="post" class="dashboard-form">
+      {% csrf_token %}
+      <input
+        type="number"
+        name="soil_moisture"
+        placeholder="Soil Moisture (%)"
+        required
+        class="dashboard-input"
+      />
+      <input
+        type="number"
+        name="temperature"
+        placeholder="Temperature (°C)"
+        required
+        class="dashboard-input"
+      />
+      <input
+        type="number"
+        name="rainfall"
+        placeholder="Rainfall (mm)"
+        required
+        class="dashboard-input"
+      />
+      <button type="submit" class="upload-btn">Submit Data</button>
+    </form>
+  </div>
+</div>

@@ -10,7 +10,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="{% static 'accounts/css/dashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'accounts/css/dashboard_main.css' %}" />
   </head>
   <body>
     <!-- Fixed Header -->
@@ -25,7 +27,7 @@
           <span id="selectedFarm">
             <!-- This will be set by JS to the first farm in the list -->
           </span>
-          <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-caret-down"></i>
         </button>
       </div>
     </header>
@@ -61,7 +63,7 @@
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-short-border"></div>
         <button class="sidebar-dashboard-btn">
-          <i class="fas fa-chart-line"></i> Dashboard
+          <i class="fas fa-chart-line"></i> Dashboard <i class="fas fa-angle-right"></i>
         </button>
         <div class="sidebar-divider"></div>
         <nav class="sidebar-menu">
@@ -91,7 +93,7 @@
           <div class="sidebar-pro-card">
             <div class="pro-title">Become Pro Access</div>
             <div class="pro-text">
-              Try your experince for using new features
+              Try your experience for using new features
             </div>
             <button class="pro-btn">
               <i class="fas fa-crown"></i> Upgrade to Pro
@@ -105,110 +107,7 @@
 
       <!-- Main Content -->
       <main class="main-content">
-        <div class="field-selector">
-          <select>
-            <option>Field A ▼</option>
-            <option>Field B</option>
-          </select>
-        </div>
-        <div class="dashboard-top-card">
-          <div class="card-header">
-            <h3>Humidity vs Rainfall</h3>
-            <div class="weather-today">
-              <div class="weather-title">Weather Today</div>
-              <div class="weather-info">
-                <i class="fas fa-sun"></i> Sunny<br />
-                <span>Pressure: 40%</span>
-              </div>
-            </div>
-          </div>
-          <div class="chart-area">
-            <!-- Placeholder for line chart -->
-            <img
-              src="https://placehold.co/400x120/EEE/AAA?text=Line+Chart"
-              alt="Line Chart"
-              class="chart-img"
-            />
-          </div>
-          <div class="soil-moisture-bar">
-            <span>Current Soil Moisture Levels</span>
-            <div class="moisture-bar-bg">
-              <div class="moisture-bar-fill" style="width: 65%"></div>
-            </div>
-            <span class="moisture-value">65%</span>
-          </div>
-        </div>
-        <div class="dashboard-bottom-card">
-          <div class="bottom-left">
-            <h3>Soil Moisture Over Time</h3>
-            <div class="bar-chart">
-              <!-- Static bar chart -->
-              <div class="bar" style="height: 60%"></div>
-              <div class="bar" style="height: 80%"></div>
-              <div class="bar" style="height: 40%"></div>
-              <div class="bar" style="height: 70%"></div>
-              <div class="bar" style="height: 50%"></div>
-            </div>
-            <button class="view-report-btn">View Report</button>
-          </div>
-          <div class="bottom-right">
-            <div class="more-analysis-title">More Analysis</div>
-            <a href="#" class="analysis-link">Soil</a>
-            <a href="#" class="analysis-link">Crop Health</a>
-            <a href="#" class="see-all-link"
-              >See all AgriNova features &rarr;</a
-            >
-          </div>
-        </div>
-        <!-- New Section: Crop Image Upload & Environmental Data -->
-        <div class="dashboard-card">
-          <h3>Crop Image Upload</h3>
-          <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="file" name="crop_image" accept="image/*" required />
-            <button type="submit" class="upload-btn">Upload</button>
-          </form>
-        </div>
-        <div class="dashboard-card">
-          <h3>Environmental Data Input</h3>
-          <form method="post">
-            {% csrf_token %}
-            <input
-              type="text"
-              name="soil_moisture"
-              placeholder="Soil Moisture (%)"
-              required
-            />
-            <input
-              type="text"
-              name="temperature"
-              placeholder="Temperature (°C)"
-              required
-            />
-            <input
-              type="text"
-              name="rainfall"
-              placeholder="Rainfall (mm)"
-              required
-            />
-            <button type="submit" class="upload-btn">Submit Data</button>
-          </form>
-        </div>
-        <!-- Notifications/Alerts -->
-        <div class="dashboard-card">
-          <h3>Notifications & Alerts</h3>
-          <ul class="notifications-list">
-            <li><i class="fas fa-exclamation-triangle"></i> No new alerts.</li>
-            <!-- Future: dynamically list alerts here -->
-          </ul>
-        </div>
-        <!-- Farm Profile Edit -->
-        <div class="dashboard-card">
-          <h3>Farm Profile</h3>
-          <a href="#" class="edit-profile-btn">
-            <i class="fas fa-edit"></i> Edit Farm Details
-          </a>
-        </div>
+        {% include "accounts/dashboard_main.html" %}
       </main>
 
       <!-- Floating Right Toolbar -->
@@ -218,11 +117,30 @@
         </button>
         <button class="toolbar-icon" id="openAlertsModal"><i class="fas fa-bell"></i></button>
         <button class="toolbar-icon"><i class="fas fa-cog"></i></button>
-        <button class="toolbar-icon"><i class="fas fa-palette"></i></button>
+        <button class="toolbar-icon" title="Feedback"><i class="fas fa-comment-dots"></i></button>
         <div class="toolbar-spacer"></div>
         <button class="toolbar-icon theme-toggle">
           <i class="fas fa-moon"></i>
         </button>
+      </div>
+
+            <!-- Theme Selection Modal -->
+      <div id="themeModal" class="modal">
+        <div class="modal-content theme-modal-content">
+          <span class="close-modal" id="closeThemeModal">&times;</span>
+          <h2 class="theme-modal-title"><i class="fas fa-palette"></i> Choose Theme</h2>
+          <div class="theme-options">
+            <button class="theme-option" data-theme="light">
+              <i class="fas fa-sun"></i> Light Theme
+            </button>
+            <button class="theme-option" data-theme="dark">
+              <i class="fas fa-moon"></i> Dark Theme
+            </button>
+            <button class="theme-option" data-theme="system">
+              <i class="fas fa-desktop"></i> System Default
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Profile Edit Modal -->
@@ -280,6 +198,35 @@
         </div>
       </div>
 
+            <!-- Feedback Modal -->
+      <div id="feedbackModal" class="feedback-modal">
+        <div class="feedback-modal-content">
+          <!-- Top Row: Avatar, Title, and Close/Settings Icons -->
+          <div class="feedback-header">
+            <img src="{% static 'core/images/doctor2.jpg' %}" alt="User" class="alerts-modal-avatar" />
+          
+            <div class="feedback-title">Feedback</div>
+            <span class="feedback-modal-close" id="closeFeedbackModal">&times;</span>
+          </div>
+          <!-- Illustration -->
+          <div class="feedback-modal-illustration">
+            <!-- Modal Header -->
+          <div class="feedback-modal-header">
+            <div class="feedback-modal-title">How are you feeling?</div>
+          </div>
+          <div class="feedback-modal-desc">
+            your input is valuable in helping us better understand your needs<br>
+            and tailor our service accordingly
+          </div>
+          <!-- Comment Box -->
+          <textarea class="feedback-modal-comment" placeholder="Add a comment ..."></textarea>
+          <!-- Submit Button -->
+          <button class="feedback-modal-submit">Submit now</button>
+          </div>
+          
+        </div>
+      </div>
+
     <script src="{% static 'accounts/js/farm_select_modal.js' %}"></script>
     <script>
       document.getElementById("openProfileModal").onclick = function () {
@@ -312,10 +259,162 @@
       document.getElementById("closeAlertsModal").onclick = function () {
         document.getElementById("alertsModal").classList.remove("show");
       };
-      // Hide the alerts modal when clicking outside the content
-      document.getElementById("alertsModal").addEventListener("click", function (event) {
+    </script>
+
+        <script>
+      // Show the feedback modal
+      document.querySelectorAll('.toolbar-icon[title="Feedback"]').forEach(function(btn) {
+        btn.onclick = function () {
+          document.getElementById("feedbackModal").classList.add("show");
+        };
+      });
+      // Hide the feedback modal when clicking the close icon
+      document.getElementById("closeFeedbackModal").onclick = function () {
+        document.getElementById("feedbackModal").classList.remove("show");
+      };
+    </script>
+
+        <script>
+      // Open theme modal
+      document.querySelector('.theme-toggle').onclick = function () {
+        document.getElementById('themeModal').classList.add('show');
+      };
+      // Close theme modal
+      document.getElementById('closeThemeModal').onclick = function () {
+        document.getElementById('themeModal').classList.remove('show');
+      };
+      // Close modal when clicking outside content
+      document.getElementById('themeModal').addEventListener('click', function(event) {
         if (event.target === this) {
-          this.classList.remove("show");
+          this.classList.remove('show');
+        }
+      });
+      // Theme selection logic (add your theme switching logic here)
+      document.querySelectorAll('.theme-option').forEach(btn => {
+        btn.onclick = function() {
+          document.querySelectorAll('.theme-option').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          // Example: set theme (implement your logic here)
+          // let theme = this.getAttribute('data-theme');
+          // setTheme(theme);
+          document.getElementById('themeModal').classList.remove('show');
+        };
+      });
+    </script>
+
+        <script>
+            const ctx = document.getElementById('dummyLineChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          datasets: [
+            {
+              label: 'Humidity',
+              data: [5, 18, 80, 8, 56, 6, 40],
+              borderColor: '#F3A108',
+              backgroundColor: 'rgba(255,192,77,0.1)',
+              tension: 0.4,
+              fill: true,
+              pointRadius: 3,
+              pointBackgroundColor: '#c4830c'
+            },
+            {
+              label: 'Rainfall',
+              data: [30, 19, 3, 25, 2, 15, 60],
+              borderColor: '#B6D13A',
+              backgroundColor: 'rgba(59,130,246,0.08)',
+              tension: 0.4,
+              fill: true,
+              pointRadius: 3,
+              pointBackgroundColor: '#3b82f6'
+            }
+          ]
+        },
+        options: {
+          plugins: { 
+            legend: { 
+              display: true,
+               labels: {
+              color: '#fff',
+            } 
+            } 
+          },
+          scales: {
+            x: { 
+              grid: { display: false },
+              ticks: {
+                color: '#fff' // <-- X axis label color
+              } 
+            },
+            y: { 
+              grid: { color: '#fff' }, 
+              beginAtZero: true,
+              ticks: {
+                color: '#fff' // <-- X axis label color
+              } 
+            },
+          }
+        }
+      });
+    </script>
+
+        <script>
+      // Open modal when edit farm is clicked
+      document.querySelectorAll('.edit-farm').forEach(btn => {
+        btn.onclick = function(e) {
+          e.preventDefault();
+          document.getElementById('editFarmModal').classList.add('show');
+        };
+      });
+    
+      // Close modal
+      document.getElementById('closeEditFarmModal').onclick = function () {
+        document.getElementById('editFarmModal').classList.remove('show');
+      };
+    
+      // Close modal when clicking outside content
+      document.getElementById('editFarmModal').addEventListener('click', function(event) {
+        if (event.target === this) {
+          this.classList.remove('show');
+        }
+      });
+    </script>
+
+    <script>
+      const ctxBar = document.getElementById('soilMoistureBarChart').getContext('2d');
+      new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+          labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Sun+', 'Sun++'],
+          datasets: [{
+            label: 'Soil Moisture (%)',
+            data: [6, 90, 40, 70, 50, 50, 50, 50, 10],
+            backgroundColor: '#ffc04d',
+            borderRadius: 1,
+            borderSkipped: false,
+            maxBarThickness: 28
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#A8611C', font: { weight: 'bold' } }
+            },
+            y: {
+              beginAtZero: true,
+              min: 0,
+              max: 100,
+              grid: { color: '#eee' },
+              ticks: { stepSize: 10, color: '#A8611C', font: { weight: 'bold' } }
+            }
+          }
         }
       });
     </script>
