@@ -119,29 +119,23 @@
         <button class="toolbar-icon"><i class="fas fa-cog"></i></button>
         <button class="toolbar-icon" title="Feedback"><i class="fas fa-comment-dots"></i></button>
         <div class="toolbar-spacer"></div>
-        <button class="toolbar-icon theme-toggle">
-          <i class="fas fa-moon"></i>
+                <button class="toolbar-icon theme-toggle">
+          <i class="fas fa-moon" style="transform: scaleX(-1);"></i>
         </button>
       </div>
 
-            <!-- Theme Selection Modal -->
-      <div id="themeModal" class="modal">
-        <div class="modal-content theme-modal-content">
-          <span class="close-modal" id="closeThemeModal">&times;</span>
-          <h2 class="theme-modal-title"><i class="fas fa-palette"></i> Choose Theme</h2>
-          <div class="theme-options">
-            <button class="theme-option" data-theme="light">
-              <i class="fas fa-sun"></i> Light Theme
-            </button>
-            <button class="theme-option" data-theme="dark">
-              <i class="fas fa-moon"></i> Dark Theme
-            </button>
-            <button class="theme-option" data-theme="system">
-              <i class="fas fa-desktop"></i> System Default
-            </button>
-          </div>
-        </div>
-      </div>
+                       <!-- Theme Popup Modal -->
+            <div id="themePopup" class="theme-popup-modal">
+              <button class="theme-popup-option" data-theme="light">
+                <i class="fas fa-sun"></i> Light Theme
+              </button>
+              <button class="theme-popup-option" data-theme="dark">
+                <i class="fas fa-moon"></i> Dark Theme
+              </button>
+              <button class="theme-popup-option" data-theme="system">
+                <i class="fas fa-desktop"></i> System Default
+              </button>
+            </div>
 
       <!-- Profile Edit Modal -->
           <div id="profileModal" class="profile-modal">
@@ -274,33 +268,34 @@
       };
     </script>
 
-        <script>
-      // Open theme modal
-      document.querySelector('.theme-toggle').onclick = function () {
-        document.getElementById('themeModal').classList.add('show');
-      };
-      // Close theme modal
-      document.getElementById('closeThemeModal').onclick = function () {
-        document.getElementById('themeModal').classList.remove('show');
-      };
-      // Close modal when clicking outside content
-      document.getElementById('themeModal').addEventListener('click', function(event) {
-        if (event.target === this) {
-          this.classList.remove('show');
-        }
-      });
-      // Theme selection logic (add your theme switching logic here)
-      document.querySelectorAll('.theme-option').forEach(btn => {
-        btn.onclick = function() {
-          document.querySelectorAll('.theme-option').forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-          // Example: set theme (implement your logic here)
-          // let theme = this.getAttribute('data-theme');
-          // setTheme(theme);
-          document.getElementById('themeModal').classList.remove('show');
-        };
-      });
-    </script>
+               <script>
+          // Show/hide popup on theme button click
+          const themeBtn = document.querySelector('.theme-toggle');
+          const themePopup = document.getElementById('themePopup');
+          document.addEventListener('click', function(e) {
+            if (themeBtn.contains(e.target)) {
+              themePopup.style.display = themePopup.style.display === 'block' ? 'none' : 'block';
+              // Position popup below the button
+              const rect = themeBtn.getBoundingClientRect();
+              themePopup.style.top = 'auto';
+              themePopup.style.bottom = (window.innerHeight - rect.top + 8) + 'px'; // 8px gap
+              themePopup.style.right = (window.innerWidth - rect.right + 4) + 'px';
+            } else if (!themePopup.contains(e.target)) {
+              themePopup.style.display = 'none';
+            }
+          });
+        
+          // Theme selection logic (add your logic here)
+          document.querySelectorAll('.theme-popup-option').forEach(btn => {
+            btn.onclick = function() {
+              document.querySelectorAll('.theme-popup-option').forEach(b => b.classList.remove('active'));
+              this.classList.add('active');
+              // let theme = this.getAttribute('data-theme');
+              // setTheme(theme);
+              themePopup.style.display = 'none';
+            };
+          });
+        </script>
 
         <script>
             const ctx = document.getElementById('dummyLineChart').getContext('2d');

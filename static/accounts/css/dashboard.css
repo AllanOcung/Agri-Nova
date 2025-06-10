@@ -722,73 +722,46 @@ html, body {
 }
 
 .theme-toggle {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 /* Theme Modal Styles */
-.modal {
-  background: #fff;
-}
-
-.theme-modal-content {
-  min-width: 320px;
-  max-width: 95vw;
-  padding: 32px 28px 24px 28px;
-  border-radius: 16px;
+.theme-popup-modal {
+  display: none;
+  position: absolute;
   background: #adadad;
-  box-shadow: 0 4px 24px rgba(168,97,28,0.10);
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  gap: 18px;
-  position: relative;
-}
-
-.theme-modal-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #000;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.theme-options {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.theme-option {
-  background: #fff7e6;
-  color: #a8611c;
-  border: 1px solid #ffc04d;
   border-radius: 10px;
-  padding: 14px 0;
-  font-size: 1.05rem;
-  font-weight: 600;
-  cursor: pointer;
+  padding: 10px;
+  min-width: 180px;
+  z-index: 1001;
+}
+.theme-popup-option {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  color: #232323;
+  font-size: 1rem;
+  font-weight: 500;
   display: flex;
   align-items: center;
   gap: 12px;
-  transition: background 0.2s, color 0.2s;
-  justify-content: center;
-}
-.theme-option:hover, .theme-option.active {
-  background: #ffc04d;
-  color: #fff;
+  padding: 10px 22px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.18s, color 0.18s;
 }
 
-.close-modal {
-  position: absolute;
-  top: 18px;
-  right: 22px;
-  font-size: 1.5rem;
-  color: #c4830c;
-  cursor: pointer;
-  font-weight: bold;
+.theme-popup-option i {
+  font-size: 1.2rem;
 }
+
+.theme-popup-option:hover,
+.theme-popup-option.active {
+  background: #ececec;
+  color: #a8611c;
+}
+
 
 
 
